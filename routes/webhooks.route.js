@@ -1,28 +1,27 @@
-const express = require('express');
+const express = require("express");
 
 const router = express.Router();
 
-let dryDustbinPercentage = 1;
-let wetDustbinPercentage = 1;
+let dryDustbinPercentage = 0;
+let wetDustbinPercentage = 0;
 
-router.get('/get', (req, res) => {
+router.get("/get", (req, res) => {
   res.status(200);
   res.send({
-    message: 'success',
+    message: "success",
     dryDustbinPercentage,
     wetDustbinPercentage,
   });
 });
 
-router.get('/set', (req, res) => {
-  console.log('webhook hit!!');
+router.get("/set", (req, res) => {
+  console.log("webhook hit!!");
   dryDustbinPercentage = req.query.dry;
   wetDustbinPercentage = req.query.wet;
   try {
-    console.log(dryDustbinPercentage, wetDustbinPercentage);
     res.status(200);
     res.json({
-      message: 'success',
+      message: "success",
     });
   } catch (error) {
     res.status(400);
